@@ -11,14 +11,12 @@ public class WindowsURLProtocolHandler implements RealURLProtocolHandler {
 	private static final String REGSTRY_TYPE_SZ = "REG_SZ";
 
 	public static String getCommandForUrl(final String url) {
+		if(!url.contains(":")){
+			throw new RuntimeException("Url protocol is invalid, it must have this format 'protocol:arguments'.");
+		}		
+		String protocol = StringUtils.substringBefore(url, ":");
+		String commandString = "reg query HKEY_CLASSES_ROOT\\" + protocol + "\\shell\\open\\command /ve";
 		try {
-			if(!url.contains(":")){
-				throw new RuntimeException("Url protocol is invalid, it must have this format 'protocol:arguments'.");
-			}
-			
-			String protocol = StringUtils.substringBefore(url, ":");
-			
-			String commandString = "reg query HKEY_CLASSES_ROOT\\" + protocol + "\\shell\\open\\command /ve";
 			Command command = new Command(commandString);
 			
 			if(command.anyErrorOccured()){
@@ -36,7 +34,7 @@ public class WindowsURLProtocolHandler implements RealURLProtocolHandler {
 			String commandResult = result.substring(valueTypeIndex + REGSTRY_TYPE_SZ.length()).trim();
 			return commandResult.replace("%1", url);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new RuntimeException("Protocol: "+protocol+", reg command: "+commandString,e);
 		}
 	}
 
@@ -49,11 +47,6 @@ public class WindowsURLProtocolHandler implements RealURLProtocolHandler {
 		}
 	}
 
-	public static void main(String[] args) {
-		new WindowsURLProtocolHandler().register("Magfakefake", "C:\\Documents and Settings\\lucas\\Local Settings\\Application Data\\Google\\Chrome\\Application\\chrome.exe");
-		new WindowsURLProtocolHandler().open("Magfakefake:?xt=urn:btih:a6e2cd5c6a736767e101fa378e4e9fb45451ac95&dn=Community+S03E18+HDTV+XviD-AFG%5Bettv%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.ccc.de%3A80");
-	}
-	
 	public void register(final String protocol, final String applicationPath) {
 		String escapedApplicationPath = applicationPath.replaceAll("\\\\", "\\\\\\\\");
 		String regFile = 
