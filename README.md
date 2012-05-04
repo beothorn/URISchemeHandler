@@ -1,7 +1,7 @@
 URLProtocolHandler
 ==================
 
-A library that calls the URL protocol handler currentl registered with the OS. 
+A library that calls the URL protocol handler currently registered with the OS. 
 
 Usage
 ==================
