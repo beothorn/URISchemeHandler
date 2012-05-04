@@ -6,7 +6,7 @@ public class MacURLProtocolHandler implements RealURLProtocolHandler {
 		throw new RuntimeException("Method not implemented");
 	}
 
-	public void register(String protocol, String handlingCommand) {
+	public void register(String protocol, String applicationPath) {
 		throw new RuntimeException("Method not implemented");
 	}
 

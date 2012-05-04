@@ -8,16 +8,11 @@ import org.apache.commons.io.FileUtils;
 public class LinuxURLProtocolHandler implements RealURLProtocolHandler {
 
 	public void open(final String url) {
-		new Thread(){
-			@Override
-			public void run() {
-				try {
-					Runtime.getRuntime().exec(new String[] { "xdg-open", url });
-				} catch (final IOException e) {
-					throw new RuntimeException(e);
-				}	
-			}
-		}.start();
+		try {
+			new Command("xdg-open \""+url+"\"");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void register(final String protocol, final String handlerApplication) {
@@ -32,16 +27,11 @@ public class LinuxURLProtocolHandler implements RealURLProtocolHandler {
 		} catch (final IOException e) {
 			throw new RuntimeException(e);
 		}
-		new Thread(){
-			@Override
-			public void run() {
-				try {
-					Runtime.getRuntime().exec(new String[] { "sh", script.getAbsolutePath() });
-				} catch (final IOException e) {
-					throw new RuntimeException(e);
-				}	
-			}
-		}.start();
+		try {
+			new Command("sh \""+script.getAbsolutePath()+"\"");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
