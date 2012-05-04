@@ -1,7 +1,7 @@
 URLProtocolHandler
 ==================
 
-A library that calls the URL protocol handler currently registered with the OS. 
+A Java library to manipulate the URL protocol handlers registered with the OS. 
 
 Usage
 ==================
@@ -18,5 +18,7 @@ URLProtocolHandler urlHandler = new URLProtocolHandler();
 String protocol = "myProtocol";  
 urlHandler.register(protocol,"c:\\protocolHandlerApplication.exe");  
 
-Limitations  
+Limitations
+==================  
 Macs don't have a place were the url protocol handlers are registered. If this library is called from a mac os it throws a exception.  
+On linux only gnome is supported for now.  
