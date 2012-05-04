@@ -10,10 +10,19 @@ public class Command {
 	private String result;
 	private String error;
 
+	public Command(final String... args) throws IOException {
+		final Process process = Runtime.getRuntime().exec(args);
+		collectOutput(process);
+	}
+	
 	public Command(final String command) throws IOException {
-		Process process = Runtime.getRuntime().exec(command);
-		InputStream inputStream = process.getInputStream();
-		InputStream errorStream = process.getErrorStream();
+		final Process process = Runtime.getRuntime().exec(command);
+		collectOutput(process);
+	}
+
+	private void collectOutput(final Process process) throws IOException {
+		final InputStream inputStream = process.getInputStream();
+		final InputStream errorStream = process.getErrorStream();
 		result = IOUtils.toString(inputStream);
 		error = IOUtils.toString(errorStream);
 	}
