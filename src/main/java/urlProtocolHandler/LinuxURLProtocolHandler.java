@@ -16,14 +16,8 @@ public class LinuxURLProtocolHandler implements RealURLProtocolHandler {
 	}
 	
 	public void register(final String protocol, final String handlerApplication) {
-		
 		try {
-			final Command getGnomeVersion = new Command("gnome-help --version");
-			if(getGnomeVersion.anyErrorOccured()){
-				throw new RuntimeException("Only gnome is currently supported.");
-			}
-			final String result = getGnomeVersion.getResult().trim();
-			final boolean isGnome3 = result.matches(".*?3\\.[0-9]\\.[0-9].*");
+			final boolean isGnome3 = isGnome3();
 			if(isGnome3){
 				gnome3Registry(protocol, handlerApplication);
 			}else{				
@@ -32,6 +26,16 @@ public class LinuxURLProtocolHandler implements RealURLProtocolHandler {
 		} catch (final IOException e1) {
 			throw new RuntimeException(e1);
 		}
+	}
+
+	private boolean isGnome3() throws IOException {
+		final Command getGnomeVersion = new Command("gnome-shell --version");
+		if(getGnomeVersion.anyErrorOccured()){
+			throw new RuntimeException("Only gnome is currently supported.");
+		}
+		final String result = getGnomeVersion.getResult().trim();
+		final boolean isGnome3 = result.matches(".*?3\\.[0-9]*\\.[0-9]*.*");
+		return isGnome3;
 	}
 
 	private void gnome3Registry(final String protocol, final String handlerApplication) {
