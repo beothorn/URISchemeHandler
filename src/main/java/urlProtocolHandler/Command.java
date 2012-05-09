@@ -9,34 +9,27 @@ public class Command {
 
 	private String result;
 	private String error;
+	private final String[] args;
 
-	public Command(final String... args) throws IOException {
-		final Process process = Runtime.getRuntime().exec(args);
-		collectOutput(process);
+	public Command(final String... args){
+		this.args = args;
 	}
 	
-	public Command(final String command) throws IOException {
-		final Process process = Runtime.getRuntime().exec(command);
-		collectOutput(process);
+	public Command(final String command){
+		this(new String[]{command});
+	}
+	
+	public CommandResult run() throws IOException {
+		final Process process = Runtime.getRuntime().exec(args);
+		return collectResult(process);
 	}
 
-	private void collectOutput(final Process process) throws IOException {
+	private CommandResult collectResult(final Process process) throws IOException {
 		final InputStream inputStream = process.getInputStream();
 		final InputStream errorStream = process.getErrorStream();
 		result = IOUtils.toString(inputStream);
 		error = IOUtils.toString(errorStream);
-	}
-	
-	public boolean anyErrorOccured(){
-		return error.length() > 0;
-	}
-	
-	public String getResult(){
-		return result;
-	}
-
-	public String getError(){
-		return error;
+		return new CommandResult(result,error);
 	}
 	
 }
