@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>beothorn.labs</groupId>
 	<artifactId>URLProtocolHandler</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<name>URLProtocolHandler</name>
 	<description>A Java library to manipulate the URL protocol handlers registered with the OS.</description>
 	<url>https://github.com/beothorn/URLProtocolHandler</url>
