@@ -29,8 +29,7 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		}
 
 		final String resultExecutable = result.substring(valueTypeIndex + REGSTRY_TYPE_SZ.length()).trim();
-		String arguments = uri.toString().replace(uri.getScheme()+":", "");
-		return resultExecutable.replace("%1", arguments);
+		return resultExecutable.replace("%1", uri.toString());
 	}
 
 	public void open(final URI uri) throws IOException {
@@ -65,8 +64,8 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		}
 		
 		
-		final String commandString = "regedit /s "+tempFile.getAbsolutePath();
-		final Command command = new Command(commandString);
+		final String[] commandStrings = new String[]{"regedit"," /s ",tempFile.getAbsolutePath()};
+		final Command command = new Command(commandStrings);
 		command.run();
 	}
 
