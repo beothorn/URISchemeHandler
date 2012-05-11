@@ -8,17 +8,17 @@ Usage
 
 Opening a URIScheme string with default handler:    
 
-String magnetLink = "magnet:?xt=urn:foobarbaz";  
-URLProtocolHandler urlHandler = new URLProtocolHandler();  
-urlHandler.open(magnetLink);  
+String magnetLinkUri = "magnet:?xt=urn:foobarbaz";  
+URISchemeHandler uriSchemeHandler = new URISchemeHandler();  
+uriSchemeHandler.open(magnetLinkUri);  
 
 Registering a URIScheme    
 
-URLProtocolHandler urlHandler = new URLProtocolHandler();  
-String protocol = "mySchemeHandler";  
-urlHandler.register(protocol,"c:\\mySchemeHandler.exe");  
+URISchemeHandler urlHandler = new URISchemeHandler();  
+String schemeName = "mySchemeHandler";  
+urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  
 
 Limitations
 ==================  
-Macs don't have a place were the url protocol handlers are registered. If this library is called from a mac os it throws a exception.  
+Macs don't have a place were the uri scheme handlers are registered. If this library is called from a mac os it throws a exception.  
 On linux only gnome is supported for now.  
