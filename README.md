@@ -1,7 +1,7 @@
-URLProtocolHandler
+URISchemelHandler
 ==================
 
-A Java library to manipulate the URL protocol handlers registered with the OS. 
+A Java library to open and register applications with a URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
 
 Usage
 ==================
