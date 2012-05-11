@@ -8,7 +8,8 @@ Usage
 
 Opening a URIScheme string with default handler:    
 
-String magnetLinkUri = "magnet:?xt=urn:foobarbaz";  
+String magnetLink = "magnet:?xt=urn:foobarbaz";  
+URI magnetLinkUri = new URI(magnetLink);
 URISchemeHandler uriSchemeHandler = new URISchemeHandler();  
 uriSchemeHandler.open(magnetLinkUri);  
 
