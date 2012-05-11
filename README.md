@@ -6,17 +6,17 @@ A Java library to open and register applications with a URIScheme. See http://en
 Usage
 ==================
 
-Opening a url with default handler:    
+Opening a URIScheme string with default handler:    
 
 String magnetLink = "magnet:?xt=urn:foobarbaz";  
 URLProtocolHandler urlHandler = new URLProtocolHandler();  
 urlHandler.open(magnetLink);  
 
-Registering a protocol handler    
+Registering a URIScheme    
 
 URLProtocolHandler urlHandler = new URLProtocolHandler();  
-String protocol = "myProtocol";  
-urlHandler.register(protocol,"c:\\protocolHandlerApplication.exe");  
+String protocol = "mySchemeHandler";  
+urlHandler.register(protocol,"c:\\mySchemeHandler.exe");  
 
 Limitations
 ==================  
