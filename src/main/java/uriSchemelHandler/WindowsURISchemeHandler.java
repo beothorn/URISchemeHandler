@@ -1,18 +1,18 @@
-package urlProtocolHandler;
+package uriSchemelHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 
-public class WindowsURLProtocolHandler implements RealURLProtocolHandler {
+public class WindowsURISchemeHandler implements RealURISchemeHandler {
 
 	private static final String REGSTRY_TYPE_SZ = "REG_SZ";
 
-	public static String getCommandForUrl(final String url) throws IOException {		
-		final String protocol = StringUtils.substringBefore(url, ":");
-		final String commandString = "reg query HKEY_CLASSES_ROOT\\" + protocol + "\\shell\\open\\command /ve";
+	public static String getCommandForUrl(final URI uri) throws IOException {		
+		final String schemeName = uri.getScheme();
+		final String commandString = "reg query HKEY_CLASSES_ROOT\\" + schemeName + "\\shell\\open\\command /ve";
 		final Command command = new Command(commandString);
 		final CommandResult commandResult = command.run();
 		
@@ -29,30 +29,31 @@ public class WindowsURLProtocolHandler implements RealURLProtocolHandler {
 		}
 
 		final String resultExecutable = result.substring(valueTypeIndex + REGSTRY_TYPE_SZ.length()).trim();
-		return resultExecutable.replace("%1", url);
+		String arguments = uri.toString().replace(uri.getScheme()+":", "");
+		return resultExecutable.replace("%1", arguments);
 	}
 
-	public void open(final String url) throws IOException {
-		final String commandForUrl = getCommandForUrl(url);
-		Runtime.getRuntime().exec(commandForUrl);
+	public void open(final URI uri) throws IOException {
+		final String commandForUri = getCommandForUrl(uri);
+		Runtime.getRuntime().exec(commandForUri);
 	}
 
-	public void register(final String protocol, final String applicationPath) throws IOException {
+	public void register(final String schemeName, final String applicationPath) throws IOException {
 		final String escapedApplicationPath = applicationPath.replaceAll("\\\\", "\\\\\\\\");
 		final String regFile = 
 				"Windows Registry Editor Version 5.00\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+protocol+"]\r\n" + 
-				"@=\""+protocol+" URI\"\r\n" + 
+				"[HKEY_CLASSES_ROOT\\"+schemeName+"]\r\n" + 
+				"@=\""+schemeName+" URI\"\r\n" + 
 				"\"URL Protocol\"=\"\"\r\n" + 
-				"\"Content Type\"=\"application/x-"+protocol+"\"\r\n" + 
+				"\"Content Type\"=\"application/x-"+schemeName+"\"\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+protocol+"\\shell]\r\n" + 
+				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell]\r\n" + 
 				"@=\"open\"\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+protocol+"\\shell\\open]\r\n" + 
+				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell\\open]\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+protocol+"\\shell\\open\\command]\r\n" + 
+				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell\\open\\command]\r\n" + 
 				"@=\"\\\""+escapedApplicationPath+"\\\" \\\"%1\\\"\"";
 		
 		File tempFile;

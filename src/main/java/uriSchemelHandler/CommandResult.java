@@ -1,4 +1,4 @@
-package urlProtocolHandler;
+package uriSchemelHandler;
 
 public class CommandResult {
 

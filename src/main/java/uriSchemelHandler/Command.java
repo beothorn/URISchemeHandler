@@ -1,4 +1,4 @@
-package urlProtocolHandler;
+package uriSchemelHandler;
 
 import java.io.IOException;
 import java.io.InputStream;

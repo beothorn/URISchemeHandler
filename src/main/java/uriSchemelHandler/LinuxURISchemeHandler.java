@@ -1,14 +1,15 @@
-package urlProtocolHandler;
+package uriSchemelHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 import org.apache.commons.io.FileUtils;
 
-public class LinuxURLProtocolHandler implements RealURLProtocolHandler {
+public class LinuxURISchemeHandler implements RealURISchemeHandler {
 	
-	public void open(final String url) throws IOException {
-		Runtime.getRuntime().exec(new String[]{"xdg-open",url});
+	public void open(final URI uri) throws IOException {
+		Runtime.getRuntime().exec(new String[]{"xdg-open",uri.toString()});
 	}
 	
 	public void register(final String protocol, final String handlerApplication) throws IOException {

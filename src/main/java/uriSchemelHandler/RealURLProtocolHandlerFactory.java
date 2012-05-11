@@ -1,14 +1,14 @@
-package urlProtocolHandler;
+package uriSchemelHandler;
 
 public class RealURLProtocolHandlerFactory {
 
-	public static RealURLProtocolHandler produce(final String osName) {
+	public static RealURISchemeHandler produce(final String osName) {
 		final String osLowerCase = osName.toLowerCase();
 		if(osLowerCase.contains("linux")){
-			return new LinuxURLProtocolHandler();
+			return new LinuxURISchemeHandler();
 		}
 		if(osLowerCase.contains("windows")){
-			return new WindowsURLProtocolHandler();
+			return new WindowsURISchemeHandler();
 		}
 		throw new RuntimeException("OS not supported");
 	}
