@@ -64,7 +64,7 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		}
 		
 		
-		final String[] commandStrings = new String[]{"regedit"," /s ",tempFile.getAbsolutePath()};
+		final String[] commandStrings = new String[]{"regedit","/s",tempFile.getAbsolutePath()};
 		final Command command = new Command(commandStrings);
 		command.run();
 	}
