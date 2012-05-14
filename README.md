@@ -9,15 +9,20 @@ Usage
 Opening a URIScheme string with default handler:    
 
 String magnetLink = "magnet:?xt=urn:foobarbaz";  
-URI magnetLinkUri = new URI(magnetLink);
+URI magnetLinkUri = new URI(magnetLink);  
 URISchemeHandler uriSchemeHandler = new URISchemeHandler();  
 uriSchemeHandler.open(magnetLinkUri);  
+
+This will open the torrent client registered with the os to handle the magnet scheme name, 
+for example, if you install utorrent, utorrent will open and ask you if you want to add the magnet to your downloads.  
 
 Registering a URIScheme    
 
 URISchemeHandler urlHandler = new URISchemeHandler();  
 String schemeName = "mySchemeHandler";  
 urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  
+
+
 
 Limitations
 ==================  
