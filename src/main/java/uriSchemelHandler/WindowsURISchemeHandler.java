@@ -12,7 +12,8 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 
 	public static String getCommandForUrl(final URI uri) throws IOException {		
 		final String schemeName = uri.getScheme();
-		final String[] commandString = new String[]{"C:\\WINDOWS\\system32\\reg","query","HKEY_CLASSES_ROOT\\" + schemeName + "\\shell\\open\\command","/ve"};
+		final String sysdir = System.getenv("WINDIR") + "\\system32\\reg";
+		final String[] commandString = new String[]{sysdir,"query","HKEY_CLASSES_ROOT\\" + schemeName + "\\shell\\open\\command","/ve"};
 		final Command command = new Command(commandString);
 		final CommandResult commandResult = command.run();
 		
