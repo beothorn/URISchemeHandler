@@ -1,26 +1,28 @@
 URISchemelHandler
 ==================
 
-A Java library to open and register applications with a URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
+A Java library to open and register applications with an URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
 
 Usage
 ==================
 
-Opening a URIScheme string with default handler:    
+Opening an URIScheme string with default handler:    
 
 String magnetLink = "magnet:?xt=urn:foobarbaz";  
 URI magnetLinkUri = new URI(magnetLink);  
 URISchemeHandler uriSchemeHandler = new URISchemeHandler();  
 uriSchemeHandler.open(magnetLinkUri);  
 
-This will open the torrent client registered with the os to handle the magnet scheme name, 
-for example, if you install utorrent, utorrent will open and ask you if you want to add the magnet to your downloads.  
+This will open the torrent client registered with the os to handle the magnet scheme name. 
+For example, if you install utorrent, utorrent will open and ask you if you want to add the magnet link to your downloads.  
 
 Registering a URIScheme    
 
 URISchemeHandler urlHandler = new URISchemeHandler();  
 String schemeName = "mySchemeHandler";  
 urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  
+
+Befor adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
 
 
 
