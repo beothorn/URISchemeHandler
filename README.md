@@ -5,10 +5,10 @@ A Java library to open and register applications with an URIScheme. See http://e
 
 Just add to your pom
 
-<dependency>  
-  <groupId>com.github.beothorn</groupId>  
-  <artifactId>URISchemelHandler</artifactId>  
-  <version>1.4</version>  
+\<dependency\>  
+  \<groupId\>com.github.beothorn\</groupId\>  
+  \<artifactId\>URISchemelHandler\</artifactId\>  
+  \<version>1.4\</version\>  
 </dependency>  
 
 
