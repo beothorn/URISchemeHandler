@@ -9,7 +9,7 @@ Just add to your pom
   \<groupId\>com.github.beothorn\</groupId\>  
   \<artifactId\>URISchemelHandler\</artifactId\>  
   \<version>1.4\</version\>  
-</dependency>  
+\</dependency\>  
 
 
 Usage
