@@ -29,9 +29,9 @@ Registering a URIScheme
 
 URISchemeHandler urlHandler = new URISchemeHandler();  
 String schemeName = "mySchemeHandler";  
-urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  
+urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  //c:\\mySchemeHandler.exe or any command to receive the URI as parameter
 
-Befor adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
+Before adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
 
 
 
