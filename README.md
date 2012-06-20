@@ -3,7 +3,15 @@ URISchemelHandler
 
 A Java library to open and register applications with an URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
 
-Just add to your pom
+But why?
+Browsers use the URI Schemes handlers registered with the OS to decide which application to use to handle a URI scheme. 
+For example the mailto scheme is usually associated with your default email client, so if there is something like this on 
+a website  
+mailto:foo@bar.com  
+It will open your email client when you click on it.
+
+
+To use just add to your pom
 
 \<dependency\>  
   \<groupId\>com.github.beothorn\</groupId\>  
