@@ -3,7 +3,7 @@
 	
 	<groupId>com.github.beothorn</groupId>
 	<artifactId>URISchemeHandler</artifactId>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5</version>
 	<name>URISchemeHandler</name>
 	<description>A Java library to open and register applications with a URI scheme. </description>
 	<url>https://github.com/beothorn/URISchemeHandler</url>
