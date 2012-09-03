@@ -1,4 +1,4 @@
-URISchemelHandler
+URISchemeHandler
 ==================
 
 A Java library to open and register applications with an URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
@@ -15,8 +15,8 @@ To use just add to your pom
 
 \<dependency\>  
   \<groupId\>com.github.beothorn\</groupId\>  
-  \<artifactId\>URISchemelHandler\</artifactId\>  
-  \<version>1.4\</version\>  
+  \<artifactId\>URISchemeHandler\</artifactId\>  
+  \<version>1.5\</version\>  
 \</dependency\>  
 
 
