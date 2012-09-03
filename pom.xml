@@ -2,11 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>com.github.beothorn</groupId>
-	<artifactId>URISchemelHandler</artifactId>
+	<artifactId>URISchemeHandler</artifactId>
 	<version>1.5-SNAPSHOT</version>
 	<name>URISchemeHandler</name>
 	<description>A Java library to open and register applications with a URI scheme. </description>
-	<url>https://github.com/beothorn/URISchemelHandler</url>
+	<url>https://github.com/beothorn/URISchemeHandler</url>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
@@ -16,9 +16,9 @@
 	</licenses>
 	
 	<scm>
-		<connection>scm:git:git@github.com:beothorn/URISchemelHandler.git</connection>
-		<developerConnection>scm:git|ssh://git@github.com/beothorn/URISchemelHandler.git</developerConnection>
-		<url>git@github.com:beothorn/URISchemelHandler.git</url>
+		<connection>scm:git:git@github.com:beothorn/URISchemeHandler.git</connection>
+		<developerConnection>scm:git|ssh://git@github.com/beothorn/URISchemeHandler.git</developerConnection>
+		<url>git@github.com:beothorn/URISchemeHandler.git</url>
 	</scm>
 
 	<build>

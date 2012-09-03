@@ -1,4 +1,4 @@
-package uriSchemelHandler;
+package uriSchemeHandler;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package uriSchemelHandler;
+package uriSchemeHandler;
 
 public class RealURLProtocolHandlerFactory {
 
