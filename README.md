@@ -42,8 +42,6 @@ urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  //c:\\mySchemeHandle
 Before adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
 
 
-
 Limitations
 ==================  
-Macs don't have a place were the uri scheme handlers are registered. If this library is called from a mac os it throws a exception.  
-On linux only gnome is supported for now.  
+OS X is not implemented yet. If this library is called from a mac os it throws a exception.
