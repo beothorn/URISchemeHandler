@@ -3,6 +3,7 @@ package uriSchemeHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 
@@ -33,9 +34,32 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		return resultExecutable.replace("%1", uri.toString());
 	}
 
+	public static String[] commandToStringArray(final String command){
+		final ArrayList<String> arrayList = new ArrayList<String>();
+		String lastToken = "";
+		boolean ignoreChar = false;
+		for (final char c : command.toCharArray()) {
+			if(c == '"' && !ignoreChar){
+				if(!lastToken.trim().isEmpty())
+					arrayList.add(lastToken);
+				lastToken = "";
+				continue;
+			}
+			lastToken += c;
+			if(ignoreChar){
+				ignoreChar = false;
+			}
+			if(c == '\\'){
+				ignoreChar = true;
+			}
+			
+		}
+		return arrayList.toArray(new String[0]);
+	}
+	
 	public void open(final URI uri) throws IOException {
 		final String commandForUri = getCommandForUrl(uri);
-		Runtime.getRuntime().exec(commandForUri);
+		Runtime.getRuntime().exec(commandToStringArray(commandForUri));
 	}
 
 	public void register(final String schemeName, final String applicationPath) throws IOException {
