@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 public class WindowsURISchemeHandler implements RealURISchemeHandler {
 
 	private static final String REGSTRY_TYPE_SZ = "REG_SZ";
+	private static final String REGSTRY_TYPE_SZ_EXPANDED = "REG_EXPAND_SZ";
 
 	public static String getCommandForUrl(final URI uri) throws IOException {		
 		final String schemeName = uri.getScheme();
@@ -23,15 +24,26 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		}
 		
 		final String result = commandResult.getResult();
+		final String uriAsString = uri.toString();
 		
-		final int valueTypeIndex = result.indexOf(REGSTRY_TYPE_SZ);
+		return getCommandFor(result, uriAsString);
+	}
 
+	public static String getCommandFor(final String regDotExeOutput, final String uriAsString) {
+		int valueTypeIndex = regDotExeOutput.indexOf(REGSTRY_TYPE_SZ);
+		String regSZ = REGSTRY_TYPE_SZ;
 		if (valueTypeIndex == -1){
-			throw new RuntimeException(REGSTRY_TYPE_SZ+" not found.");
+			valueTypeIndex = regDotExeOutput.indexOf(REGSTRY_TYPE_SZ_EXPANDED);
+			regSZ = REGSTRY_TYPE_SZ_EXPANDED;
+		}
+		if (valueTypeIndex == -1){
+			throw new RuntimeException(REGSTRY_TYPE_SZ+" or "+REGSTRY_TYPE_SZ_EXPANDED+" not found.");
 		}
 
-		final String resultExecutable = result.substring(valueTypeIndex + REGSTRY_TYPE_SZ.length()).trim();
-		return resultExecutable.replace("%1", uri.toString());
+		final String resultExecutable = regDotExeOutput.substring(valueTypeIndex + regSZ.length()).trim();
+		
+		final String finalCommand =  resultExecutable.replaceAll("%[0-9lL]", uriAsString);
+		return finalCommand;
 	}
 
 	public static String[] commandToStringArray(final String command){
