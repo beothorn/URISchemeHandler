@@ -18,10 +18,8 @@ To use just add to your pom
 	<version>1.5</version>  
 </dependency>  
 ```
-
 Usage
 ==================
-
 Opening an URIScheme string with default handler:    
 
 ```
@@ -43,8 +41,6 @@ Registering a URIScheme
 ```
 
 Before adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
-
-
 Limitations
 ==================  
 OS X is not implemented yet. If this library is called from a mac os it throws a exception.
