@@ -5,7 +5,7 @@ A Java library to open and register applications with an URIScheme. See http://e
 
 Browsers use the URI Schemes  handlers registered with the OS to decide which application to use to handle a URI scheme. 
 For example the mailto scheme name is usually associated with your default email client, so if there is something like this on 
-a website  
+a website:  
 <a href="mailto:foo@bar.com">mailto:foo@bar.com</a>  
 It will open your email client when you click on it.
 
