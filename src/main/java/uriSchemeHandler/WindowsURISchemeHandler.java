@@ -42,7 +42,7 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 
 		final String resultExecutable = regDotExeOutput.substring(valueTypeIndex + regSZ.length()).trim();
 		
-		final String finalCommand =  resultExecutable.replaceAll("%[0-9lL]", uriAsString);
+		final String finalCommand =  resultExecutable.replaceAll("%[1lL]", uriAsString);
 		return finalCommand;
 	}
 
