@@ -11,7 +11,7 @@ It will open your email client when you click on it.
 
 
 To use just add to your pom
-```
+```xml
 <dependency>
 	<groupId>com.github.beothorn</groupId>  
 	<artifactId>URISchemeHandler</artifactId>
@@ -22,7 +22,7 @@ Usage
 ==================
 Opening an URIScheme string with default handler:    
 
-```
+```java
 String magnetLink = "magnet:?xt=urn:foobarbaz";  
 URI magnetLinkUri = new URI(magnetLink);  
 URISchemeHandler uriSchemeHandler = new URISchemeHandler();  
@@ -34,7 +34,7 @@ For example, if you install utorrent, utorrent will open and ask you if you want
 
 Registering a URIScheme    
 
-```
+```java
 URISchemeHandler urlHandler = new URISchemeHandler();  
 String schemeName = "mySchemeHandler";  
 urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  //c:\\mySchemeHandler.exe or any command to receive the URI as parameter
