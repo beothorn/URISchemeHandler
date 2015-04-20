@@ -1,7 +1,7 @@
 URISchemeHandler
 ==================
 
-A Java library to open and register applications with an URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
+A simple java library that calls system commands to open and register applications with an URIScheme. See http://en.wikipedia.org/wiki/URI_scheme
 
 Browsers use the URI Schemes  handlers registered with the OS to decide which application to use to handle a URI scheme. 
 For example the mailto scheme name is usually associated with your default email client, so if there is something like this on 
