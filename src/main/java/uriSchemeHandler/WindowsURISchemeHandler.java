@@ -15,7 +15,7 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 	public static String getCommandForUrl(final URI uri) throws IOException {		
 		final String schemeName = uri.getScheme();
 		final String sysdir = System.getenv("WINDIR") + "\\system32\\reg";
-		final String[] commandString = new String[]{sysdir,"query","HKEY_CLASSES_ROOT\\" + schemeName + "\\shell\\open\\command","/ve"};
+		final String[] commandString = new String[]{sysdir,"query","HKEY_CURRENT_USER\\" + schemeName + "\\shell\\open\\command","/ve"};
 		final Command command = new Command(commandString);
 		final CommandResult commandResult = command.run();
 		
@@ -79,17 +79,17 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		final String regFile = 
 				"Windows Registry Editor Version 5.00\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+schemeName+"]\r\n" + 
+				"[HKEY_CURRENT_USER\\"+schemeName+"]\r\n" +
 				"@=\""+schemeName+" URI\"\r\n" + 
 				"\"URL Protocol\"=\"\"\r\n" + 
 				"\"Content Type\"=\"application/x-"+schemeName+"\"\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell]\r\n" + 
+				"[HKEY_CURRENT_USER\\"+schemeName+"\\shell]\r\n" +
 				"@=\"open\"\r\n" + 
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell\\open]\r\n" + 
+				"[HKEY_CURRENT_USER\\"+schemeName+"\\shell\\open]\r\n" +
 				"\r\n" + 
-				"[HKEY_CLASSES_ROOT\\"+schemeName+"\\shell\\open\\command]\r\n" + 
+				"[HKEY_CURRENT_USER\\"+schemeName+"\\shell\\open\\command]\r\n" +
 				"@=\"\\\""+escapedApplicationPath+"\\\" \\\"%1\\\"\"";
 		
 		File tempFile;
@@ -101,7 +101,7 @@ public class WindowsURISchemeHandler implements RealURISchemeHandler {
 		}
 		
 		
-		final String[] commandStrings = new String[]{"regedit","/s",tempFile.getAbsolutePath()};
+		final String[] commandStrings = new String[]{"cmd", "/c", "regedit","/s",tempFile.getAbsolutePath()};
 		final Command command = new Command(commandStrings);
 		command.run();
 	}
