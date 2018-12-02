@@ -15,7 +15,7 @@ To use just add to your pom
 <dependency>
 	<groupId>com.github.beothorn</groupId>  
 	<artifactId>URISchemeHandler</artifactId>
-	<version>1.9</version>  
+	<version>2.0.0</version>  
 </dependency>  
 ```
 Usage
