@@ -10,7 +10,7 @@ public class MacURISchemeHandler implements RealURISchemeHandler {
     }
 
     public void register(String schemeName, String applicationPath) throws IOException {
-        // not needed
+        throw new RuntimeException("NOT IMPLEMENTED");
     }
 
 }
