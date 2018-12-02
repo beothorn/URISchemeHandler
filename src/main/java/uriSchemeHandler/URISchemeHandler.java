@@ -1,5 +1,6 @@
 package uriSchemeHandler;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 
@@ -16,7 +17,11 @@ public class URISchemeHandler {
 		try {
 			realURLProtocolHandler.open(uri);
 		} catch (final IOException e) {
-			//TODO: Try opening the browser here
+			try {
+				Desktop.getDesktop().browse(uri);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			throw new CouldNotOpenUriSchemeHandler(e,uri.toString());
 		}
 	}

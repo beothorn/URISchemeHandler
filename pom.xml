@@ -3,7 +3,7 @@
 	
 	<groupId>com.github.beothorn</groupId>
 	<artifactId>URISchemeHandler</artifactId>
-	<version>1.8-SNAPSHOT</version>
+	<version>1.9-SNAPSHOT</version>
 	<name>URISchemeHandler</name>
 	<description>A Java library to open and register applications with a URI scheme. </description>
 	<url>https://github.com/beothorn/URISchemeHandler</url>
@@ -28,7 +28,15 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.2.1</version>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>6</source>
+                    <target>6</target>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 	<profiles>
