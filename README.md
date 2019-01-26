@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/beothorn/URISchemeHandler.svg?branch=master)](https://travis-ci.org/beothorn/URISchemeHandler)
+
 URISchemeHandler
 ==================
 
@@ -41,3 +43,11 @@ urlHandler.register(schemeName,"c:\\mySchemeHandler.exe");  //c:\\mySchemeHandle
 ```
 
 Before adding a new scheme, make sure it doesn't conflict with an existing one. There's a list of them on the wikipedia article mentioned above.
+
+What's new on version 2.0.0
+====================
+
+- No need for admin user for windows
+- Added support for mac
+
+Thanks @lionel1704 @dmmop
